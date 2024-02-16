@@ -35,18 +35,24 @@ module FIFO#(parameter data_width = 48, depth = 128)
     reg [data_width-1:0] fifo [depth-1:0];
     integer count = 0;
        
-    // for write data to FIFO
-    always @(posedge clk)
+       always @(posedge clk)
     begin
-        if(wr_en && !f_full)
+        if(wr_en && !f_full && rd_en && !f_empty)
+        begin
+            fifo[wr_ptr] <= wr_data;
+            wr_ptr <= wr_ptr+1;
+            count <= count;
+            r_rd_data <= fifo[rd_ptr];
+            rd_ptr <= rd_ptr+1;
+            fifo[rd_ptr] <= 0;
+        end
+        else if(wr_en && !f_full)
         begin
             fifo[wr_ptr] <= wr_data;
             wr_ptr <= wr_ptr+1;
             count <= count + 1'b1;
         end
-    
-    // for read data from FIFO
-        if(rd_en && !f_empty)
+        else if(rd_en && !f_empty)
         begin
             r_rd_data <= fifo[rd_ptr];
             rd_ptr <= rd_ptr+1;
@@ -56,6 +62,7 @@ module FIFO#(parameter data_width = 48, depth = 128)
         else
             r_rd_data <= 0;
     end
+    
     assign rd_data = r_rd_data;
     
     // assigning flags
