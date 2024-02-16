@@ -1,0 +1,19 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../Decoder_APB_Test_2.srcs/sources_1/new/FIFO.v" \
+"../../../../Decoder_APB_Test_2.srcs/sources_1/new/ENCODEC.v" \
+"../../../../Decoder_APB_Test_2.srcs/sources_1/new/APB_Master.v" \
+"../../../../Decoder_APB_Test_2.srcs/sources_1/new/APB_Slave.v" \
+"../../../../Decoder_APB_Test_2.ip_user_files/bd/design_1/ip/design_1_FIFO_0_0/sim/design_1_FIFO_0_0.v" \
+"../../../../Decoder_APB_Test_2.ip_user_files/bd/design_1/ip/design_1_ENCODEC_0_0/sim/design_1_ENCODEC_0_0.v" \
+"../../../../Decoder_APB_Test_2.ip_user_files/bd/design_1/ip/design_1_APB_Master_0_0/sim/design_1_APB_Master_0_0.v" \
+"../../../../Decoder_APB_Test_2.ip_user_files/bd/design_1/ip/design_1_APB_Slave_0_0/sim/design_1_APB_Slave_0_0.v" \
+"../../../../Decoder_APB_Test_2.ip_user_files/bd/design_1/sim/design_1.v" \
+"../../../../Decoder_APB_Test_2.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v" \
+"../../../../Decoder_APB_Test_2.srcs/sim_1/new/Testbench.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,11 @@
+verilog xil_defaultlib  \
+"../../../bd/design_1/ip/design_1_FIFO_0_0/sim/design_1_FIFO_0_0.v" \
+"../../../bd/design_1/ip/design_1_ENCODEC_0_0/sim/design_1_ENCODEC_0_0.v" \
+"../../../bd/design_1/ip/design_1_APB_Master_0_0/sim/design_1_APB_Master_0_0.v" \
+"../../../bd/design_1/ip/design_1_APB_Slave_0_0/sim/design_1_APB_Slave_0_0.v" \
+"../../../bd/design_1/sim/design_1.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

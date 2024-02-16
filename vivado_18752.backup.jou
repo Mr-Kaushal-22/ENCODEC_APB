@@ -1,0 +1,106 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Fri Feb 16 10:46:45 2024
+# Process ID: 18752
+# Current directory: C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11168 C:\Users\kaush\Desktop\Vicharak\Testing\Decoder_APB_Test_2\Decoder_APB_Test_2.xpr
+# Log file: C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/vivado.log
+# Journal file: C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2\vivado.jou
+# Running On: MrKaushal22, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 4, Host memory: 16913 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.xpr
+update_compile_order -fileset sources_1
+file mkdir C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.srcs/sim_1/new/Testbench.v w ]
+add_files -fileset sim_1 C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.srcs/sim_1/new/Testbench.v
+update_compile_order -fileset sim_1
+create_bd_design "design_1"
+update_compile_order -fileset sources_1
+create_bd_cell -type module -reference FIFO FIFO_0
+create_bd_cell -type module -reference ENCODEC ENCODEC_0
+connect_bd_net [get_bd_pins FIFO_0/rd_data] [get_bd_pins ENCODEC_0/i_Data_Frame]
+connect_bd_net [get_bd_pins FIFO_0/f_empty] [get_bd_pins ENCODEC_0/i_enable]
+delete_bd_objs [get_bd_nets FIFO_0_f_empty]
+connect_bd_net [get_bd_pins FIFO_0/f_empty] [get_bd_pins ENCODEC_0/f_empty]
+connect_bd_net [get_bd_pins FIFO_0/rd_en] [get_bd_pins ENCODEC_0/o_read_en]
+connect_bd_net [get_bd_pins FIFO_0/clk] [get_bd_pins ENCODEC_0/clk]
+create_bd_cell -type module -reference APB_Master APB_Master_0
+connect_bd_net [get_bd_pins APB_Master_0/pclk] [get_bd_pins FIFO_0/clk]
+connect_bd_net [get_bd_pins ENCODEC_0/valid] [get_bd_pins APB_Master_0/valid]
+connect_bd_net [get_bd_pins APB_Master_0/ext_psel] [get_bd_pins ENCODEC_0/o_slave_sel]
+connect_bd_net [get_bd_pins APB_Master_0/ext_write] [get_bd_pins ENCODEC_0/write]
+connect_bd_net [get_bd_pins APB_Master_0/ext_addr] [get_bd_pins ENCODEC_0/o_addr]
+startgroup
+connect_bd_net [get_bd_pins ENCODEC_0/o_data] [get_bd_pins APB_Master_0/slv_pwdata]
+endgroup
+create_bd_cell -type module -reference APB_Slave APB_Slave_0
+connect_bd_net [get_bd_pins APB_Slave_0/pclk] [get_bd_pins FIFO_0/clk]
+connect_bd_net [get_bd_pins APB_Slave_0/psel] [get_bd_pins APB_Master_0/psel]
+connect_bd_net [get_bd_pins APB_Slave_0/penable] [get_bd_pins APB_Master_0/penable]
+connect_bd_net [get_bd_pins APB_Slave_0/pwrite] [get_bd_pins APB_Master_0/pwrite]
+connect_bd_net [get_bd_pins APB_Slave_0/pwdata] [get_bd_pins APB_Master_0/pwdataa]
+connect_bd_net [get_bd_pins APB_Slave_0/paddr] [get_bd_pins APB_Master_0/paddr]
+connect_bd_net [get_bd_pins APB_Master_0/prdata] [get_bd_pins ENCODEC_0/i_read_data]
+connect_bd_net [get_bd_pins ENCODEC_0/APB_ready] [get_bd_pins APB_Master_0/master_ready]
+connect_bd_net [get_bd_pins APB_Slave_0/pready] [get_bd_pins APB_Master_0/pready]
+connect_bd_net [get_bd_pins APB_Master_0/slv_prdata] [get_bd_pins APB_Slave_0/prdata_out]
+regenerate_bd_layout
+create_bd_port -dir I clk
+connect_bd_net [get_bd_ports clk] [get_bd_pins FIFO_0/clk]
+create_bd_port -dir I wr_en
+create_bd_port -dir I -from 47 -to 0 wr_data
+connect_bd_net [get_bd_ports wr_data] [get_bd_pins FIFO_0/wr_data]
+connect_bd_net [get_bd_ports wr_en] [get_bd_pins FIFO_0/wr_en]
+create_bd_port -dir O f_full
+connect_bd_net [get_bd_ports f_full] [get_bd_pins FIFO_0/f_full]
+regenerate_bd_layout
+create_bd_port -dir I i_enable
+connect_bd_net [get_bd_ports i_enable] [get_bd_pins ENCODEC_0/i_enable]
+create_bd_port -dir O -from 47 -to 0 fifo_data_frame
+create_bd_port -dir O fifo_w_en
+connect_bd_net [get_bd_ports fifo_w_en] [get_bd_pins ENCODEC_0/fifo_w_en]
+connect_bd_net [get_bd_ports fifo_data_frame] [get_bd_pins ENCODEC_0/fifo_data_frame]
+regenerate_bd_layout
+create_bd_port -dir I preset_n
+connect_bd_net [get_bd_ports preset_n] [get_bd_pins APB_Slave_0/preset_n]
+create_bd_port -dir O -from 31 -to 0 pwdata_out
+create_bd_port -dir O dv
+connect_bd_net [get_bd_ports dv] [get_bd_pins APB_Slave_0/dv]
+connect_bd_net [get_bd_ports pwdata_out] [get_bd_pins APB_Slave_0/pwdata_out]
+regenerate_bd_layout
+make_wrapper -files [get_files C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.srcs/sources_1/bd/design_1/design_1.bd] -top
+add_files -norecurse c:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
+validate_bd_design -force
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+save_bd_design
+generate_target Simulation [get_files C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.srcs/sources_1/bd/design_1/design_1.bd]
+export_ip_user_files -of_objects [get_files C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet
+export_simulation -of_objects [get_files C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.srcs/sources_1/bd/design_1/design_1.bd] -directory C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.ip_user_files -ipstatic_source_dir C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.cache/compile_simlib/modelsim} {questa=C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.cache/compile_simlib/questa} {riviera=C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.cache/compile_simlib/riviera} {activehdl=C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Decoder_APB_Test_2.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+launch_simulation
+source Testbench.tcl
+relaunch_sim
+save_wave_config {C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Testbench_behav.wcfg}
+add_files -fileset sim_1 -norecurse C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Testbench_behav.wcfg
+set_property xsim.view C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Testbench_behav.wcfg [get_filesets sim_1]
+close_sim
+launch_simulation
+open_wave_config C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Testbench_behav.wcfg
+source Testbench.tcl
+close_sim
+launch_simulation
+open_wave_config C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Testbench_behav.wcfg
+source Testbench.tcl
+relaunch_sim
+save_wave_config {C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Testbench_behav.wcfg}
+close_sim
+launch_simulation
+open_wave_config C:/Users/kaush/Desktop/Vicharak/Testing/Decoder_APB_Test_2/Testbench_behav.wcfg
+source Testbench.tcl
+close_sim

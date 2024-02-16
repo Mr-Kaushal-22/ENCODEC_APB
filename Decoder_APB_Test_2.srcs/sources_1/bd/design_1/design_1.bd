@@ -1,0 +1,468 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xBB98AF940CEDEFA8",
+      "device": "xc7a100tcsg324-1",
+      "gen_directory": "../../../../Decoder_APB_Test_2.gen/sources_1/bd/design_1",
+      "name": "design_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2023.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "FIFO_0": "",
+      "ENCODEC_0": "",
+      "APB_Master_0": "",
+      "APB_Slave_0": ""
+    },
+    "ports": {
+      "clk": {
+        "direction": "I"
+      },
+      "wr_en": {
+        "direction": "I"
+      },
+      "wr_data": {
+        "direction": "I",
+        "left": "47",
+        "right": "0"
+      },
+      "f_full": {
+        "direction": "O"
+      },
+      "i_enable": {
+        "direction": "I"
+      },
+      "fifo_data_frame": {
+        "direction": "O",
+        "left": "47",
+        "right": "0"
+      },
+      "fifo_w_en": {
+        "direction": "O"
+      },
+      "preset_n": {
+        "direction": "I"
+      },
+      "pwdata_out": {
+        "direction": "O",
+        "left": "31",
+        "right": "0"
+      },
+      "dv": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "FIFO_0": {
+        "vlnv": "xilinx.com:module_ref:FIFO:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_FIFO_0_0",
+        "xci_path": "ip\\design_1_FIFO_0_0\\design_1_FIFO_0_0.xci",
+        "inst_hier_path": "FIFO_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "FIFO",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "wr_en": {
+            "direction": "I"
+          },
+          "wr_data": {
+            "direction": "I",
+            "left": "47",
+            "right": "0"
+          },
+          "rd_en": {
+            "direction": "I"
+          },
+          "rd_data": {
+            "direction": "O",
+            "left": "47",
+            "right": "0"
+          },
+          "f_empty": {
+            "direction": "O"
+          },
+          "f_full": {
+            "direction": "O"
+          }
+        }
+      },
+      "ENCODEC_0": {
+        "vlnv": "xilinx.com:module_ref:ENCODEC:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_ENCODEC_0_0",
+        "xci_path": "ip\\design_1_ENCODEC_0_0\\design_1_ENCODEC_0_0.xci",
+        "inst_hier_path": "ENCODEC_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "ENCODEC",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "i_enable": {
+            "direction": "I"
+          },
+          "f_empty": {
+            "direction": "I"
+          },
+          "i_Data_Frame": {
+            "direction": "I",
+            "left": "47",
+            "right": "0"
+          },
+          "o_read_en": {
+            "direction": "O"
+          },
+          "i_read_data": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "APB_ready": {
+            "direction": "I"
+          },
+          "o_addr": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "o_data": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "o_slave_sel": {
+            "direction": "O",
+            "left": "6",
+            "right": "0"
+          },
+          "write": {
+            "direction": "O"
+          },
+          "valid": {
+            "direction": "O"
+          },
+          "fifo_data_frame": {
+            "direction": "O",
+            "left": "47",
+            "right": "0"
+          },
+          "fifo_w_en": {
+            "direction": "O"
+          }
+        }
+      },
+      "APB_Master_0": {
+        "vlnv": "xilinx.com:module_ref:APB_Master:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_APB_Master_0_0",
+        "xci_path": "ip\\design_1_APB_Master_0_0\\design_1_APB_Master_0_0.xci",
+        "inst_hier_path": "APB_Master_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "APB_Master",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "pclk": {
+            "direction": "I"
+          },
+          "valid": {
+            "direction": "I"
+          },
+          "ext_psel": {
+            "direction": "I",
+            "left": "6",
+            "right": "0"
+          },
+          "ext_write": {
+            "direction": "I"
+          },
+          "ext_addr": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "pready": {
+            "direction": "I"
+          },
+          "slv_prdata": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "slv_pwdata": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "psel": {
+            "direction": "O",
+            "left": "6",
+            "right": "0"
+          },
+          "penable": {
+            "direction": "O"
+          },
+          "pwrite": {
+            "direction": "O"
+          },
+          "pwdataa": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "prdata": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "paddr": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "master_ready": {
+            "direction": "O"
+          }
+        }
+      },
+      "APB_Slave_0": {
+        "vlnv": "xilinx.com:module_ref:APB_Slave:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_1_APB_Slave_0_0",
+        "xci_path": "ip\\design_1_APB_Slave_0_0\\design_1_APB_Slave_0_0.xci",
+        "inst_hier_path": "APB_Slave_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "APB_Slave",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "pclk": {
+            "direction": "I"
+          },
+          "preset_n": {
+            "direction": "I"
+          },
+          "psel": {
+            "direction": "I",
+            "left": "6",
+            "right": "0"
+          },
+          "penable": {
+            "direction": "I"
+          },
+          "pwrite": {
+            "direction": "I"
+          },
+          "paddr": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "pwdata": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "pwdata_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "prdata_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "dv": {
+            "direction": "O"
+          },
+          "pready": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "APB_Master_0_master_ready": {
+        "ports": [
+          "APB_Master_0/master_ready",
+          "ENCODEC_0/APB_ready"
+        ]
+      },
+      "APB_Master_0_paddr": {
+        "ports": [
+          "APB_Master_0/paddr",
+          "APB_Slave_0/paddr"
+        ]
+      },
+      "APB_Master_0_penable": {
+        "ports": [
+          "APB_Master_0/penable",
+          "APB_Slave_0/penable"
+        ]
+      },
+      "APB_Master_0_prdata": {
+        "ports": [
+          "APB_Master_0/prdata",
+          "ENCODEC_0/i_read_data"
+        ]
+      },
+      "APB_Master_0_psel": {
+        "ports": [
+          "APB_Master_0/psel",
+          "APB_Slave_0/psel"
+        ]
+      },
+      "APB_Master_0_pwdataa": {
+        "ports": [
+          "APB_Master_0/pwdataa",
+          "APB_Slave_0/pwdata"
+        ]
+      },
+      "APB_Master_0_pwrite": {
+        "ports": [
+          "APB_Master_0/pwrite",
+          "APB_Slave_0/pwrite"
+        ]
+      },
+      "APB_Slave_0_dv": {
+        "ports": [
+          "APB_Slave_0/dv",
+          "dv"
+        ]
+      },
+      "APB_Slave_0_prdata_out": {
+        "ports": [
+          "APB_Slave_0/prdata_out",
+          "APB_Master_0/slv_prdata"
+        ]
+      },
+      "APB_Slave_0_pready": {
+        "ports": [
+          "APB_Slave_0/pready",
+          "APB_Master_0/pready"
+        ]
+      },
+      "APB_Slave_0_pwdata_out": {
+        "ports": [
+          "APB_Slave_0/pwdata_out",
+          "pwdata_out"
+        ]
+      },
+      "ENCODEC_0_fifo_data_frame": {
+        "ports": [
+          "ENCODEC_0/fifo_data_frame",
+          "fifo_data_frame"
+        ]
+      },
+      "ENCODEC_0_fifo_w_en": {
+        "ports": [
+          "ENCODEC_0/fifo_w_en",
+          "fifo_w_en"
+        ]
+      },
+      "ENCODEC_0_o_addr": {
+        "ports": [
+          "ENCODEC_0/o_addr",
+          "APB_Master_0/ext_addr"
+        ]
+      },
+      "ENCODEC_0_o_data": {
+        "ports": [
+          "ENCODEC_0/o_data",
+          "APB_Master_0/slv_pwdata"
+        ]
+      },
+      "ENCODEC_0_o_read_en": {
+        "ports": [
+          "ENCODEC_0/o_read_en",
+          "FIFO_0/rd_en"
+        ]
+      },
+      "ENCODEC_0_o_slave_sel": {
+        "ports": [
+          "ENCODEC_0/o_slave_sel",
+          "APB_Master_0/ext_psel"
+        ]
+      },
+      "ENCODEC_0_valid": {
+        "ports": [
+          "ENCODEC_0/valid",
+          "APB_Master_0/valid"
+        ]
+      },
+      "ENCODEC_0_write": {
+        "ports": [
+          "ENCODEC_0/write",
+          "APB_Master_0/ext_write"
+        ]
+      },
+      "FIFO_0_f_empty": {
+        "ports": [
+          "FIFO_0/f_empty",
+          "ENCODEC_0/f_empty"
+        ]
+      },
+      "FIFO_0_f_full": {
+        "ports": [
+          "FIFO_0/f_full",
+          "f_full"
+        ]
+      },
+      "FIFO_0_rd_data": {
+        "ports": [
+          "FIFO_0/rd_data",
+          "ENCODEC_0/i_Data_Frame"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "clk",
+          "FIFO_0/clk",
+          "ENCODEC_0/clk",
+          "APB_Slave_0/pclk",
+          "APB_Master_0/pclk"
+        ]
+      },
+      "i_enable_1": {
+        "ports": [
+          "i_enable",
+          "ENCODEC_0/i_enable"
+        ]
+      },
+      "preset_n_1": {
+        "ports": [
+          "preset_n",
+          "APB_Slave_0/preset_n"
+        ]
+      },
+      "wr_data_1": {
+        "ports": [
+          "wr_data",
+          "FIFO_0/wr_data"
+        ]
+      },
+      "wr_en_1": {
+        "ports": [
+          "wr_en",
+          "FIFO_0/wr_en"
+        ]
+      }
+    }
+  }
+}

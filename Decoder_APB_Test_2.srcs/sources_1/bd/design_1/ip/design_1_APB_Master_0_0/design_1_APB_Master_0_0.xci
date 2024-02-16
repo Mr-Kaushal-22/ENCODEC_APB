@@ -1,0 +1,65 @@
+{
+  "schema": "xilinx.com:schema:json_instance:1.0",
+  "ip_inst": {
+    "xci_name": "design_1_APB_Master_0_0",
+    "cell_name": "APB_Master_0",
+    "component_reference": "xilinx.com:module_ref:APB_Master:1.0",
+    "ip_revision": "1",
+    "gen_directory": "../../../../../../Decoder_APB_Test_2.gen/sources_1/bd/design_1/ip/design_1_APB_Master_0_0",
+    "parameters": {
+      "component_parameters": {
+        "IDLE": [ { "value": "\"00\"", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
+        "SETUP": [ { "value": "\"01\"", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
+        "ACCESS": [ { "value": "\"10\"", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
+        "Component_Name": [ { "value": "design_1_APB_Master_0_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "model_parameters": {
+        "IDLE": [ { "value": "\"00\"", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
+        "SETUP": [ { "value": "\"01\"", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
+        "ACCESS": [ { "value": "\"10\"", "resolve_type": "generated", "format": "bitString", "usage": "all" } ]
+      },
+      "project_parameters": {
+        "ARCHITECTURE": [ { "value": "artix7" } ],
+        "BASE_BOARD_PART": [ { "value": "" } ],
+        "BOARD_CONNECTIONS": [ { "value": "" } ],
+        "DEVICE": [ { "value": "xc7a100t" } ],
+        "PACKAGE": [ { "value": "csg324" } ],
+        "PREFHDL": [ { "value": "VERILOG" } ],
+        "SILICON_REVISION": [ { "value": "" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
+        "SPEEDGRADE": [ { "value": "-1" } ],
+        "STATIC_POWER": [ { "value": "" } ],
+        "TEMPERATURE_GRADE": [ { "value": "" } ]
+      },
+      "runtime_parameters": {
+        "IPCONTEXT": [ { "value": "IP_Integrator" } ],
+        "IPREVISION": [ { "value": "1" } ],
+        "MANAGED": [ { "value": "TRUE" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../Decoder_APB_Test_2.gen/sources_1/bd/design_1/ip/design_1_APB_Master_0_0" } ],
+        "SELECTEDSIMMODEL": [ { "value": "" } ],
+        "SHAREDDIR": [ { "value": "../../ipshared" } ],
+        "SWVERSION": [ { "value": "2023.2" } ],
+        "SYNTHESISFLOW": [ { "value": "OOC_HIERARCHICAL" } ]
+      }
+    },
+    "boundary": {
+      "ports": {
+        "pclk": [ { "direction": "in" } ],
+        "valid": [ { "direction": "in" } ],
+        "ext_psel": [ { "direction": "in", "size_left": "6", "size_right": "0" } ],
+        "ext_write": [ { "direction": "in" } ],
+        "ext_addr": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "pready": [ { "direction": "in" } ],
+        "slv_prdata": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "slv_pwdata": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "psel": [ { "direction": "out", "size_left": "6", "size_right": "0" } ],
+        "penable": [ { "direction": "out" } ],
+        "pwrite": [ { "direction": "out" } ],
+        "pwdataa": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
+        "prdata": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
+        "paddr": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
+        "master_ready": [ { "direction": "out" } ]
+      }
+    }
+  }
+}
