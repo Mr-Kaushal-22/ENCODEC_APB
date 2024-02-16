@@ -1,29 +1,13 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
 // Create Date: 16.02.2024 10:44:55
 // Design Name: 
 // Module Name: ENCODEC
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
 //////////////////////////////////////////////////////////////////////////////////
 
 
 module ENCODEC(
     input clk,
-    
-    input i_enable,
                
     // Input from FIFO
     input f_empty,              
@@ -59,6 +43,8 @@ module ENCODEC(
     reg [47:0] r_fifo_data_frame;
     reg r_fifo_w_en;
     
+    reg r1_f_empty = 1, r2_f_empty = 1; 
+    
     parameter IDLE = 4'b0000;
     parameter FIFO_READ = 4'b0001;
     parameter DATA_SAMPLE = 4'B0010;
@@ -78,6 +64,8 @@ module ENCODEC(
     
     always @(posedge clk)
     begin
+        r1_f_empty <= f_empty;
+        r2_f_empty <= r1_f_empty;
         case (state)
             IDLE:       begin // 0
                             length <= 0;
@@ -94,7 +82,7 @@ module ENCODEC(
                             r_fifo_w_en = 0;
                             r_fifo_data_frame = 48'bx;
                             
-                            if(i_enable && !f_empty)
+                            if(!r2_f_empty)
                             begin
                                 state <= FIFO_READ;
                                 r_read_en <= 1;
@@ -167,24 +155,16 @@ module ENCODEC(
                                         frame_count <= 0;
                                         r1_addr <= r1_addr + 1;
     
-                                        if(i_enable && !f_empty)
+                                        if(!r2_f_empty)
                                         begin
                                             state <= FIFO_READ;
                                             r_read_en <= 1;
                                             r_valid <= 0;
                                             r_data <= 32'bx;
                                             r2_addr <= 32'bx;
-                                            r_write <= 1'bx;
                                         end
                                         else
-                                        begin
                                             state <= IDLE;
-                                            r_valid <= 0;
-                                            r_slave_sel <= 7'bx;
-                                            r2_addr <= 32'bx;
-                                            r_data <= 32'bx;
-                                            r_write <= 1'bx;
-                                        end
                                     end
                                 end
                                 else
@@ -204,13 +184,11 @@ module ENCODEC(
             R_ADDR:      begin // 8
                                 r_fifo_w_en <= 0;
                                 r_fifo_data_frame <= 48'bx;
-            
                                 r_valid <= 1;
                                 r2_addr <= r1_addr;
                                 r_valid <= 1;
                                 state <= R_DATA_READ;
-                                frame_count <= frame_count + 1;
-                                
+                                frame_count <= frame_count + 1;                                
                             end
                             
             R_DATA_READ:          begin // 9
@@ -218,9 +196,7 @@ module ENCODEC(
                                 begin
                                     if(frame_count < length)
                                     begin
-//                                        r2_addr <= r1_addr;
                                         r1_addr <= r1_addr + 1;
-                                        
                                         r_fifo_w_en = 1;
                                         r_fifo_data_frame[31:0] = i_read_data;
                                         r_fifo_data_frame[47:32] <= 16'h0000;
@@ -233,7 +209,7 @@ module ENCODEC(
                                         frame_count <= 0;
                                         r1_addr <= r1_addr + 1;
     
-                                        if(i_enable && !f_empty)
+                                        if(!r2_f_empty)
                                         begin
                                             state <= FIFO_READ;
                                             r_read_en <= 1;
