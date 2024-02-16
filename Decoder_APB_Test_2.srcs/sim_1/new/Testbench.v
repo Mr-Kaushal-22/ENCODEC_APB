@@ -27,7 +27,6 @@ module Testbench();
   wire f_full;
   wire [47:0]fifo_data_frame;
   wire fifo_w_en;
-  reg i_enable;
   reg preset_n;
   wire [31:0]pwdata_out;
   reg [47:0]wr_data;
@@ -39,7 +38,6 @@ design_1_wrapper design1
     f_full,
     fifo_data_frame,
     fifo_w_en,
-    i_enable,
     preset_n,
     pwdata_out,
     wr_data,
@@ -51,7 +49,6 @@ design_1_wrapper design1
     initial 
     begin
         clk = 1;
-        i_enable = 0;
         wr_data = 48'bx;
         wr_en = 0;
         preset_n = 0;
@@ -95,11 +92,9 @@ design_1_wrapper design1
         #10 wr_data = 48'h000012345671;
         #10 wr_en =0;
             wr_data = 48'hx;   
-        #50 i_enable = 1;
             
-        //#100 i_enable = 0;
     end
     
     
-    initial #5000 $stop;
+    initial #2000 $stop;
 endmodule
